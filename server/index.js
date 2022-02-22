@@ -1,8 +1,16 @@
 const express = require('express')
 const app = express()
+const cors =require('cors')
+const mongoose = require ('mongoose')
 
-app.get('/hello', (req, res) => {
-    res.send('hello world')
+app.use(cors())
+app.use(express.json())  //telling express that anything coming to body should be passed on as JSON.
+
+mongoose.connect('mongodb://localhost:2701')
+
+app.post('/api/register', (req, res) => {
+    console.log(req,body)
+    res.json({ status: 'ok' })
 })
 
 app.listen(5000, () => {
